@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Fragrant Moments</title>
+<style>
+  body {
+    font-family: 'Helvetica', sans-serif;
+    background-color: #ffffff; /* 💠 하얀 배경 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0;
+    gap: 24px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #2c3e50; /* 짙은 네이비그레이 */
+    margin-bottom: 0.5em;
+  }
+
+  .smell-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: none;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .smell-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  }
+
+  .smell-card img {
+    width: 80%;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .smell-card img:hover {
+    transform: scale(1.05);
+  }
+
+  .scent-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #004080;
+  }
+
+  .scent-desc {
+    font-size: 0.95rem;
+    color: #333366;
+    text-align: center;
+  }
+
+  .experience-btn {
+  background-color: #3366cc;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  outline: none;    
+}
+
+.experience-btn:focus {
+  outline: none;        /* ← 포커스 테두리 제거 */
+}
+</style>
+</head>
+<body>
+
+<h1>My Fragrant Moments</h1>
+
+<!-- Chanel Gabrielle (orange) -->
+<div class="smell-card">
+  <img src="images/fl_white.jpg" alt="Chanel Gabrielle">
+  <div class="scent-title">Chanel Gabrielle</div>
+  <div class="scent-desc">The little flower shines in the warm sun. Its petals move softly, like they are dancing. The light makes the flower glow, and the room feels full of happy, soft air. When the wind touches the petals, they spin gently, and it feels like the flower is alive. Every breath smells like sunshine and happiness. The flower is small, but it makes everything around it feel bright and calm. </div>
+  <button class="experience-btn" data-white="images/fl_white.jpg" data-color="images/fl_color.jpg">✨ Experience 🌸🍊</button>
+</div>
+
+<!-- Dior Miss Dior (pink rose) -->
+<div class="smell-card">
+  <img src="images/cl_white.jpg" alt="Dior Miss Dior">
+  <div class="scent-title">Dior Miss Dior Parfum</div>
+  <div class="scent-desc">The night sky is dark and quiet. Stars sparkle like tiny lights all over the sky. Soft clouds float slowly, and shiny ribbons of scent drift through them. The perfume feels like moonlight moving in the air. It is calm and soft, like the city is sleeping and dreaming. When you smell it, you feel peaceful, like floating above the clouds with the stars.</div>
+  <button class="experience-btn" data-white="images/cl_white.jpg" data-color="images/cl_color.jpg">🌹 Experience 🍓💖</button>
+</div>
+
+<!-- Burberry Her (strawberry / rose) -->
+<div class="smell-card">
+  <img src="images/yell_white.jpg" alt="Burberry Her">
+  <div class="scent-title">Burberry Her</div>
+  <div class="scent-desc">People are dancing in the streets. The sweet smell of flowers fills the air. Everyone moves like the music of the flowers is in their hearts. The night lights shine and sparkle, and the scent flows around them like little glowing sparks. The perfume makes the air happy and alive. Every step feels light, and everyone smiles, because the flowers and the music make the world feel magical.</div>
+  <button class="experience-btn" data-white="images/yell_white.jpg" data-color="images/yell_color.jpg">🌹 Experience 🌹💛</button>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll('.experience-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const img = btn.parentElement.querySelector('img');
+      const whiteSrc = btn.dataset.white;
+      const colorSrc = btn.dataset.color;
+
+      // 버튼 클릭 시 백지 이미지로 변경
+      img.src = whiteSrc;
+
+      // 3초 후 컬러 이미지로 변경
+      setTimeout(() => {
+        img.src = colorSrc;
+      }, 3000);
+    });
+  });
+</script>
+<a href="main.html"> ← Back </a>
+
+</body>
+</html>
