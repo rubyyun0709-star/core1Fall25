@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Space of Fragments</title>
+  <style>
+    body {
+      font-family: "Bradley Hand", cursive;
+      background-color: #ffffff; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;  
+      margin: 0;
+      gap: 24px;
+      text-align: center;
+      padding: 10px;
+      position: relative;       
+      overflow-y: auto;         
+    }
+
+    .box {
+      background-color: #fff; 
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+      padding: 10px;
+      line-height: 1.6;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      margin: 0.6em 0;
+    }
+
+    .heart {
+      font-size: 1.2em;
+      margin-right: 0.3em;
+    }
+
+    .note {
+      color: #777;
+      font-style: italic;
+      margin-top: 1em;
+    }
+
+    /* ===== Floating Hearts 스타일 (양 옆) ===== */
+ .floating-heart {
+  position: absolute;
+  font-size: 24px;
+  color: red;
+  animation: float 5s linear infinite;
+  top: -10%; /* 화면 위에서 시작 */
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(120vh) rotate(360deg); /* 화면 아래로 이동 */
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- 첫 박스 -->
+  <div class="box">
+    <h1> What do I love to do! </h1>
+    <p class="note"> Here are examples...</p>
+  </div>
+
+  <div class="box">
+   <p><span class="heart">❤</span>I love the quiet rhythm of capturing little pieces of my world... I first of all I Love getting flowers!</p>
+    <img src="images/rose.png" alt="A peaceful place" width="70%">
+  </div>
+
+  <div class="box">
+    <p><span class="heart">❤</span>I love when I take a photo of the good meal, and the calm feeling of simply existing in a peaceful place.</p>
+    <img src="images/Food.png" alt="A peaceful place" width="70%">
+  </div>
+
+  <div class="box">
+    <p><span class="heart">❤</span>I love to look out those landscapes, a gentle joys that remind me how beautiful everyday life can be.</p>
+    <img src="images/lang.png" alt="A peaceful place" width="70%">
+    <p class="note"> Picture was taken in Seattle, by me.</p>
+  </div>
+
+  <div class="box">
+    <p><span class="heart">❤</span>I like talking with my friends until laughter fills the air. </p>
+    <img src="images/fri.png" alt="A peaceful place" width="70%">
+  </div>
+
+  <div class="box">
+    <p><span class="heart">❤</span>I love the way sunlight glows through a lens when I take a photo, and the calm feeling of simply existing in a peaceful place.</p>
+    <img src="images/place.png" alt="A peaceful place" width="70%">
+  </div>
+
+  <div class="box">
+    <p><span class="heart">❤</span>I love to take cute pictures as well, of course for instagram!</p>
+    <img src="images/power.png" alt="A peaceful place" width="70%">
+  </div>
+
+  <a href="main.html"> ← Back </a>
+
+  <!-- ===== 화면 양 옆 floating hearts ===== -->
+  <div class="floating-heart" style="left:5vw;">♥</div>
+  <div class="floating-heart" style="center:55vw;">♡</div>
+  <div class="floating-heart" style="right:65vw;">♥</div>
+  <div class="floating-heart" style="left:95vw;">♡</div>
+    <div class="floating-heart" style="left:5vw;">♥</div>
+ 
+</body>
+</html>

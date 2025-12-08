@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Music Moments</title>
+
+<style>
+  body {
+    font-family: "Bradley Hand", "Lucida Handwriting", cursive;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0;
+    gap: 24px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #1e3a8a; /* deep blue */
+    margin-bottom: 0.5em;
+    animation: fadeIn 1.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .music-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 1s ease;
+  }
+
+  .music-card img {
+    width: 80%;
+    border-radius: 12px;
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .playing-img {
+    filter: brightness(1.15);
+    transform: scale(1.05);
+  }
+
+  .music-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1e40af; /* blue */
+  }
+
+  .music-desc {
+    font-size: 0.95rem;
+    color: #1e3a8a;
+    text-align: center;
+  }
+
+  .play-btn {
+    background-color: #3b82f6; /* blue */
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    outline: none;
+  }
+
+  .play-btn:hover {
+    background-color: #2563eb;
+  }
+
+  .floating-icon {
+    position: absolute;
+    font-size: 24px;
+    color: #60a5fa; /* soft blue */
+    animation: float 5s linear infinite;
+    top: -10%;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(120vh) rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+<h1>My Music Moments</h1>
+
+<!-- Day 1 - HONNE -->
+<audio src="Images/day1.mp3"></audio>
+<div class="music-card">
+  <img src="Images/day1.jpg" alt="Day 1 - HONNE">
+  <div class="music-title">Day 1 — HONNE</div>
+  <div class="music-desc">Soft, warm, and comforting—like a hug in melody.</div>
+  <button class="play-btn" data-song="Images/day1.mp3">▶️ Play</button>
+</div>
+
+<audio src="Images/confident.mp3"></audio>
+<!-- Justin Bieber - Confident -->
+<div class="music-card">
+  <img src="Images/confident.jpg" alt="Confident - Justin Bieber">
+  <div class="music-title">Confident — Justin Bieber</div>
+  <div class="music-desc">Bold, energetic, and impossible not to move to.</div>
+  <button class="play-btn" data-song="Images/confident.mp3">▶️ Play</button>
+</div>
+
+<audio src="Images/nobroke.mp3"></audio>
+<!-- No Broke Boy -->
+<div class="music-card">
+  <img src="Images/nobroke.jpg" alt="No Broke Boy">
+  <div class="music-title">No Broke Boy — Disco Lines & Tinashe</div>
+  <div class="music-desc">Bright, loud, neon—like dancing without thinking.</div>
+  <button class="play-btn" data-song="Images/nobroke.mp3">▶️ Play</button>
+</div>
+
+<script>
+  const buttons = document.querySelectorAll(".play-btn");
+  let currentAudio = null;
+  let currentImg = null;
+  let currentBtn = null;
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const songSrc = btn.dataset.song;
+      const card = btn.parentElement;
+      const img = card.querySelector("img");
+
+      if (currentAudio && currentBtn === btn && !currentAudio.paused) {
+        currentAudio.pause();
+        img.classList.remove("playing-img");
+        btn.textContent = "▶️ Play";
+        return;
+      }
+
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        currentImg.classList.remove("playing-img");
+        currentBtn.textContent = "▶️ Play";
+      }
+
+      const audio = card.querySelector("audio") || new Audio(songSrc);(songSrc);
+      currentAudio = audio;
+      currentImg = img;
+      currentBtn = btn;
+
+      audio.play();
+      img.classList.add("playing-img");
+      btn.textContent = "⏸️ Pause";
+
+      audio.onended = () => {
+        img.classList.remove("playing-img");
+        btn.textContent = "▶️ Play";
+      };
+    });
+  });
+</script>
+
+<div class="floating-icon" style="left:5vw;">♬</div>
+<div class="floating-icon" style="left:92vw;">♩ ♪</div>
+<div class="floating-icon" style="left:80vw;">♬ 𝄞</div>
+<div class="floating-icon" style="left:8vw;">♩ ♪ ♬</div>
+<div class="floating-icon" style="left:40vw;">♩ ♪</div>
+<div class="floating-icon" style="left:9vw;">♬</div>
+
+<a href="main.html"> ← Back </a>
+
+</body>
+</html>

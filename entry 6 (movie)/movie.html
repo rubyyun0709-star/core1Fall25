@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Personal Movie Gallery</title>
+  <style>
+    body {
+      font-family: "Bradley Hand", cursive;
+      background-color: #ffffff; 
+      display: flex;
+      flex-direction: column;
+      align-items: center;  
+      margin: 0;
+      gap: 24px;
+      text-align: center;
+      padding: 10px;
+      position: relative;       
+      overflow-y: auto;         
+    }
+
+    .box {
+      background-color: #fff; 
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+      padding: 10px;
+      line-height: 1.6;
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      margin: 0.6em 0;
+    }
+
+    .heart {
+      font-size: 1.2em;
+      margin-right: 0.3em;
+    }
+
+    .note {
+      color: #777;
+      font-style: italic;
+      margin-top: 1em;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      background-color: #8e44ad;
+      color: white;
+    }
+
+    /* Floating Symbols */
+    .floating-symbol {
+      position: absolute;
+      font-size: 28px;
+      animation: float 6s linear infinite;
+      top: -10%;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(120vh) rotate(360deg); }
+    }
+
+    /* Animated effect */
+    .animate-text {
+      animation: shakeColor 1s ease-in-out 3;
+    }
+
+    @keyframes shakeColor {
+      0% { transform: translateX(0); color: #8e44ad; }
+      25% { transform: translateX(-5px); color: #e74c3c; }
+      50% { transform: translateX(5px); color: #3498db; }
+      75% { transform: translateX(-5px); color: #f1c40f; }
+      100% { transform: translateX(0); color: #8e44ad; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Title -->
+  <div class="box">
+    <h1>My Personal Movie Gallery</h1>
+    <p class="note">Click the button below each sentence to see it come alive!</p>
+  </div>
+
+  <!-- Movie 1: Coraline -->
+  <div class="box">
+    <p id="text1"><span class="heart">❤</span>Coraline: I remember watching this alone in my dorm on a rainy night. It felt like discovering a secret world just for me and taught me to notice the magical little things around everyday life.</p>
+    <button onclick="animateText('text1')">Animate</button>
+    <img src="images/coraline.jpg" alt="My cozy corner where I watched Coraline" width="70%">
+  </div>
+
+  <!-- Movie 2: Spider-Man -->
+  <div class="box">
+    <p id="text2"><span class="heart">❤</span>Spider-Man: Into the Spider-Verse: The first time I saw Miles swinging across the city, I felt a rush of excitement and hope. It reminded me to pursue what truly inspires me, even when things feel uncertain.</p>
+    <button onclick="animateText('text2')">Animate</button>
+    <img src="images/spiderman.jpg" alt="My sketch inspired by Spider-Verse" width="70%">
+  </div>
+
+  <!-- Movie 3: Hunger Games -->
+  <div class="box">
+    <p id="text3"><span class="heart">❤</span>The Hunger Games: Watching Katniss fight and survive reminded me of the importance of courage and determination. I thought of times I had to step out of my comfort zone and face challenges in college.</p>
+    <button onclick="animateText('text3')">Animate</button>
+    <img src="images/hungergames.jpg" alt="My outdoor adventure inspired by Hunger Games" width="70%">
+  </div>
+
+  <a href="main.html"> ← Back </a>
+
+  <!-- Floating Symbols -->
+  <div class="floating-symbol" style="left:5vw; color: purple;">✦</div>
+  <div class="floating-symbol" style="left:25vw; color: red;">🕷️</div>
+  <div class="floating-symbol" style="left:45vw; color: blue;">✶</div>
+  <div class="floating-symbol" style="left:65vw; color: orange;">★</div>
+  <div class="floating-symbol" style="left:85vw; color: gold;">🏹</div>
+
+<script>
+    function animateText(id) {
+      const el = document.getElementById(id);
+      el.classList.remove('animate-text'); // reset animation
+      void el.offsetWidth; // trigger reflow
+      el.classList.add('animate-text');
+    }
+  </script>
+
+</body>
+</html>
