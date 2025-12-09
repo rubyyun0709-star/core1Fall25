@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Weather Moments</title>
+<style>
+  body {
+    font-family: 'Helvetica', sans-serif;
+    background-color: #ffffff; /* 하얀 배경 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    margin: 0;
+    gap: 24px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+  }
+
+  .weather-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+  }
+
+  .weather-card img {
+    width: 80%;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .weather-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #004080;
+  }
+
+  .weather-desc {
+    font-size: 1rem;
+    color: #333366;
+    text-align: center;
+  }
+
+  .experience-btn {
+    background-color: #3366cc;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    outline: none;    
+  }
+
+  .experience-btn:focus { outline: none; }
+
+  /* Text animation */
+  .animate-text {
+    animation: shakeColor 1s ease-in-out 3;
+  }
+
+  @keyframes shakeColor {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Falling icons */
+  .falling-icon {
+    position: absolute;
+    font-size: 24px;
+    pointer-events: none;
+    animation: fall 3s linear forwards;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<h1>My Weather Moments</h1>
+
+<!-- Sunny Card -->
+<div class="weather-card">
+  <img src="images/sun1.jpg" alt="Sunny morning">
+  <div class="weather-title">Sunny Day ☀</div>
+  <div class="weather-desc" id="text1">I love mornings when the sun lights up my room. It makes me feel energized and ready to start new projects.</div>
+  <button class="experience-btn" data-img1="images/sun1.jpg" data-img2="images/sun.jpg" data-text="text1" data-icon="☀">✨ Experience ☀</button>
+</div>
+
+<!-- Rainy Card -->
+<div class="weather-card">
+  <img src="images/rain.png" alt="Rainy window">
+  <div class="weather-title">Rainy Day ☔</div>
+  <div class="weather-desc" id="text2">I enjoy the calming sound of rain while reading or sipping tea. It’s a perfect moment to reflect and relax.</div>
+  <button class="experience-btn" data-img1="images/rain.png" data-img2="images/rain.jpg" data-text="text2" data-icon="☔">🌧 Experience ☔</button>
+</div>
+
+<!-- Snowy Card -->
+<div class="weather-card">
+  <img src="images/snow1.jpg" alt="Snowy park">
+  <div class="weather-title">Snowy Day ❄</div>
+  <div class="weather-desc" id="text3">Walking through freshly fallen snow makes me feel like I’m in a magical world. Everything feels quiet and peaceful.</div>
+  <button class="experience-btn" data-img1="images/snow1.jpg" data-img2="images/snow.jpg" data-text="text3" data-icon="❄">❄ Experience ❄</button>
+</div>
+
+<script>
+const buttons = document.querySelectorAll('.experience-btn');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.parentElement;
+    const img = card.querySelector('img');
+    const textEl = document.getElementById(btn.dataset.text);
+    const icon = btn.dataset.icon;
+
+    // Animate text
+    textEl.classList.remove('animate-text');
+    void textEl.offsetWidth;
+    textEl.classList.add('animate-text');
+
+    // Falling icons
+    for(let i=0; i<5; i++){
+      const iconEl = document.createElement('div');
+      iconEl.className = 'falling-icon';
+      iconEl.textContent = icon;
+      const rect = card.getBoundingClientRect();
+      iconEl.style.left = rect.left + Math.random() * (rect.width - 30) + 'px';
+      iconEl.style.top = rect.top - 30 + 'px';
+      iconEl.style.fontSize = (16 + Math.random()*20) + 'px';
+      iconEl.style.color = ['#f1c40f','#3498db','#e74c3c','#2ecc71','#8e44ad'][Math.floor(Math.random()*5)];
+      document.body.appendChild(iconEl);
+      setTimeout(() => { iconEl.remove(); }, 3000);
+    }
+
+    // Toggle image
+    img.src = img.src.includes(btn.dataset.img1) ? btn.dataset.img2 : btn.dataset.img1;
+
+  });
+});
+</script>
+
+  <a href="index.html"> ← Back </a>
+
+
+</body>
+</html>

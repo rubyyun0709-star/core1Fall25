@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Favourite Places</title>
+
+<style>
+  /* 전체 배경 */
+body {
+  font-family: "Bradley Hand", "Lucida Handwriting", cursive;
+  background-color: #fFFFFF; /* 화이트에 가까운 연한 연두 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  margin: 0;
+  gap: 24px;
+}
+
+/* 제목 */
+h1 {
+  font-size: 2rem;
+  color: #FFFFFF /* 차분한 올리브 */
+  margin-bottom: 0.5em;
+  animation: fadeIn 1.5s ease;
+  font-weight: 700;
+}
+
+/* 카드 */
+.place-card {
+  background-color: #FFFFFF; /* 파스텔 연두 */
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.3s ease;
+  animation: fadeIn 1s ease;
+  overflow: hidden;
+  color: #4a5b2b;
+}
+
+.place-card:hover {
+  transform: scale(1.02);
+}
+
+/* 이미지 */
+.place-card img {
+  width: 100%;
+  border-radius: 16px;
+  transition: transform 0.4s ease;
+}
+
+.place-card:hover img {
+  transform: scale(1.04);
+}
+
+/* 제목 */
+.place-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #3b4f21;
+}
+
+/* 설명 */
+.place-desc {
+  font-size: 0.95rem;
+  color: #536b36;
+  text-align: center;
+}
+
+/* Experience 버튼 */
+.experience-btn {
+  background: linear-gradient(135deg, #b4ecb4, #94db9d); 
+  color: #2e3d1d;
+  border: none;
+  border-radius: 14px;
+  padding: 10px 28px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.25s ease;
+}
+
+.experience-btn:hover {
+  background: linear-gradient(135deg, #a4e6a4, #86d58c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(90, 120, 60, 0.2);
+}
+
+</style>
+</head>
+<body>
+
+
+<h1>My Favourite Places</h1>
+
+<!-- Place 1: Hotel key decor -->
+<div class="place-card">
+  <img src="images/gal1.jpg" alt="Hotel Keys Decor">
+  <div class="place-title">Hotel Key Decor</div>
+  <div class="place-desc">A cozy collection of keys and decorations in a hotel that I photographed—tiny objects with so much charm.</div>
+  <button class="experience-btn" 
+          data-default="images/gal1.jpg" 
+          data-highlight="images/gall1.jpg">
+    🌟 What is it like?
+  </button>
+</div>
+
+<!-- Place 2: Atmospheric classroom -->
+<div class="place-card">
+  <img src="images/gal2.png" alt="Movie-Set Classroom">
+  <div class="place-title">Movie-Set Classroom</div>
+  <div class="place-desc">The classroom at school felt like a cinematic set—quiet, atmospheric, and full of nostalgic vibes.</div>
+  <button class="experience-btn" 
+          data-default="images/gal2.png" 
+          data-highlight="images/gall2.jpg">
+    🌟 What is it like?
+  </button>
+</div>
+
+<!-- Place 3: Hotel lobby in Shanghai -->
+<div class="place-card">
+  <img src="images/gal3.jpg" alt="Hotel Lobby Shanghai">
+  <div class="place-title">Hotel Lobby in Shanghai</div>
+  <div class="place-desc">A hotel lobby that reminds me of Shanghai—I miss the city, its energy, and the moments spent here.</div>
+  <button class="experience-btn" 
+          data-default="images/gal3.jpg" 
+          data-highlight="images/gall3.jpg">
+    🌟 What is it like?
+  </button>
+</div>
+
+<!-- Place 4: Bape Store Shanghai -->
+<div class="place-card">
+  <img src="images/gal4.png" alt="Bape Store Shanghai">
+  <div class="place-title">Bape Store in Shanghai</div>
+  <div class="place-desc">I miss the vibe and the vacation I spent here. The store had a unique energy and style I can’t forget.</div>
+  <button class="experience-btn" 
+          data-default="images/gal4.png" 
+          data-highlight="images/gall4.jpg">
+    🌟What is it like?
+  </button>
+</div>
+
+<a href="index.html"> ← Back </a>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".experience-btn");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const card = btn.parentElement;
+      const img = card.querySelector("img");
+      const defaultSrc = btn.dataset.default;
+      const highlightSrc = btn.dataset.highlight;
+
+      // 클릭 즉시 강조 이미지로 변경
+      img.src = highlightSrc;
+
+      // 3초 후 원래 이미지로 돌아오기
+      setTimeout(() => {
+        img.src = defaultSrc;
+      }, 2000);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

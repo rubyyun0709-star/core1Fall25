@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Interactive Vision Board</title>
+<style>
+  body {
+    font-family: "Bradley Hand", cursive;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    gap: 24px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+  }
+
+  .card {
+    background-color: #fff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .card img {
+    width: 80%;
+    border-radius: 10px;
+  }
+
+  .card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 8px 0;
+    color: #004080;
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: #333366;
+    margin-bottom: 10px;
+  }
+
+  .pin-btn {
+    padding: 6px 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #e74c3c;
+    color: white;
+  }
+
+  .pin {
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.9);
+    padding: 2px 6px;
+    border-radius: 6px;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    animation: drop 0.5s ease forwards;
+  }
+
+  @keyframes drop {
+    0% { transform: translateY(-30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<h1>My Interactive Vision Board</h1>
+
+<!-- Goal 1 -->
+<div class="card">
+  <img src="images/goal1.jpg" alt="Peaceful Life Black & White">
+  <div class="card-title">Peaceful Life</div>
+  <div class="card-desc">I want my life to flow calmly and peacefully, like a black & white photo, simple and serene.</div>
+  <button class="pin-btn" data-messages='["You are almost there! 💪", "Keep going! 🌟", "Almost done! 🔥", "Stay strong! 💖", "You got this! 👍"]'>Pin</button>
+</div>
+
+<!-- Goal 2 -->
+<div class="card">
+  <img src="images/goal2.jpg" alt="Abundant Life in New York">
+  <div class="card-title">Abundant Life in New York</div>
+  <div class="card-desc">I want to live a rich and fulfilling life in New York, enjoying both the city's energy and my personal peace.</div>
+  <button class="pin-btn" data-messages='["Shine bright! ✨", "Almost there! 💪", "Keep moving! 🚀", "Stay motivated! 🌈", "Yes, you can! 🏙️"]'>Pin</button>
+</div>
+
+<!-- Goal 3 -->
+<div class="card">
+  <img src="images/goal.jpg" alt="Live in New York Long-term">
+  <div class="card-title">Live in New York Long-term</div>
+  <div class="card-desc">I want to live in New York long-term, feeling the city's energy while building my own space and community.</div>
+  <button class="pin-btn" data-messages='["You are doing great! 💯", "Almost there! 💪", "Keep shining! 🌟", "Believe in yourself! 💖", "Success is near! 🏙️"]'>Pin</button>
+</div>
+
+<script>
+const buttons = document.querySelectorAll('.pin-btn');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.parentElement;
+    const img = card.querySelector('img');
+    const messages = JSON.parse(btn.dataset.messages);
+
+    // 랜덤 메시지 선택
+    const pinText = messages[Math.floor(Math.random() * messages.length)];
+
+    const pin = document.createElement('div');
+    pin.className = 'pin';
+    pin.textContent = pinText;
+
+    pin.style.left = (Math.random() * (img.width - 100)) + 'px';
+    pin.style.top = (Math.random() * (img.height - 30)) + 'px';
+    card.appendChild(pin);
+
+    // 드래그 기능
+    let offsetX, offsetY, isDragging = false;
+
+    pin.addEventListener('mousedown', e => {
+      isDragging = true;
+      offsetX = e.clientX - pin.offsetLeft;
+      offsetY = e.clientY - pin.offsetTop;
+      pin.style.cursor = 'grabbing';
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const rect = card.getBoundingClientRect();
+      let x = e.clientX - rect.left - offsetX;
+      let y = e.clientY - rect.top - offsetY;
+
+      x = Math.max(0, Math.min(rect.width - pin.offsetWidth, x));
+      y = Math.max(0, Math.min(rect.height - pin.offsetHeight, y));
+
+      pin.style.left = x + 'px';
+      pin.style.top = y + 'px';
+    });
+
+    pin.addEventListener('mouseup', e => {
+      isDragging = false;
+      pin.style.cursor = 'grab';
+    });
+
+    pin.addEventListener('mouseleave', e => {
+      isDragging = false;
+      pin.style.cursor = 'grab';
+    });
+  });
+});
+</script>
+
+<a href="index.html"> ← Back to Home </a>
+
+</body>
+</html>
