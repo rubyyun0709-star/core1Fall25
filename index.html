@@ -4,95 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fragments of Me</title>
-
-  <style>
-    body {
-      background-color: #fff;
-      font-family: "Bradley Hand", "Lucida Handwriting", cursive;
-      color: #000;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      position: relative;
-      background-color: #f0f0f0;
-      text-align: center;
-      padding: 80px 20px;
-      height: 250px;
-      overflow: hidden;
-    }
-
-    header h1 {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    .floating-diary {
-      position: absolute;
-      width: 100px;
-      top: 60%; 
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: floatDiary 4s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatDiary {
-      0% { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
-      50% { transform: translate(-50%, -50%) translateY(-10px) rotate(5deg); }
-      100% { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 30px;
-      padding: 40px 20px;
-    }
-
-    .entry {
-      width: 800px;
-      min-height: 450px;
-      background-color: #fff;
-      border: 1px solid #f0f0f0;
-      border-radius: 15px;
-      text-align: center;
-      padding: 30px 20px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .entry:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-    }
-
-    .entry img {
-      width: 300px;
-      margin-bottom: 15px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .entry img:hover {
-      transform: scale(1.2);
-    }
-
-    .entry h2 {
-      font-size: 1.5em;
-      margin: 15px 0 10px 0;
-    }
-
-    .entry p {
-      font-size: 1.4em;
-      line-height: 1.6;
-      color: #333;
-    }
-
-  </style>
   
 </head>
 <body>
@@ -129,13 +40,13 @@
     </div>
 
     <div class="entry">
-      <img src="images/quote.png" alt="Quotes" data-target="quotes.html">
+      <img src="images/quote.png" alt="Quotes" data-target="quote.html">
       <h2>Quotes that inspire me</h2>
       <p>I find great inspiration in the insightful quotes of Jordan Peterson. His messages about life and growth stay with me.</p>
     </div>
 
     <div class="entry">
-      <img src="images/movie.png" alt="Movies" data-target="movies.html">
+      <img src="images/movie.png" alt="Movies" data-target="movie.html">
       <h2>Movies & Shows that inspire me</h2>
       <p>I enjoy 'Coraline', 'Friends', and 'Coffee Prince'. Stories that evoke feelings and imagination captivate me deeply.</p>
     </div>
@@ -167,18 +78,23 @@
   </main>
 
   <!-- JS: 모든 entry 이미지에 더블클릭 이벤트 추가 -->
-  <script>
-    const entryImages = document.querySelectorAll(".entry img");
+ <script>
+  // 모든 entry 이미지 선택
+  const entryImages = document.querySelectorAll('.entry img');
 
-    entryImages.forEach(img => {
-      img.addEventListener("dblclick", () => {
-        const target = img.dataset.target;
-        if(target) {
-          window.location.href = target;
-        }
-      });
+  entryImages.forEach(img => {
+    // 더블클릭 이벤트 추가
+    img.addEventListener('dblclick', () => {
+      const targetPage = img.getAttribute('data-target'); // data-target 속성 읽기
+      if (targetPage) {
+        window.location.href = targetPage; // 해당 페이지로 이동
+      } else {
+        console.warn('data-target 속성이 없습니다:', img);
+      }
     });
-  </script>
+  });
+</script>
+
 
 </body>
 </html>

@@ -1,75 +1,88 @@
 <style>
-  body {
-    font-family: "Bradley Hand", cursive;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-    padding: 20px;
-    gap: 24px;
-  }
+    body {
+      background-color: #fff;
+      font-family: "Bradley Hand", "Lucida Handwriting", cursive;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
 
-  h1 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 0.5em;
-  }
+    header {
+      position: relative;
+      background-color: #f0f0f0;
+      text-align: center;
+      padding: 80px 20px;
+      height: 250px;
+      overflow: hidden;
+    }
 
-  .card {
-    background-color: #fff;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    padding: 10px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
+    header h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
 
-  .card img {
-    width: 80%;
-    border-radius: 10px;
-  }
+    .floating-diary {
+      position: absolute;
+      width: 100px;
+      top: 60%; 
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: floatDiary 4s ease-in-out infinite alternate;
+    }
 
-  .card-title {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin: 8px 0;
-    color: #004080;
-  }
+    @keyframes floatDiary {
+      0% { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
+      50% { transform: translate(-50%, -50%) translateY(-10px) rotate(5deg); }
+      100% { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
+    }
 
-  .card-desc {
-    font-size: 0.95rem;
-    color: #333366;
-    margin-bottom: 10px;
-  }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 40px 20px;
+    }
 
-  .pin-btn {
-    padding: 6px 12px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    background-color: #e74c3c;
-    color: white;
-  }
+    .entry {
+      width: 800px;
+      min-height: 450px;
+      background-color: #fff;
+      border: 1px solid #f0f0f0;
+      border-radius: 15px;
+      text-align: center;
+      padding: 30px 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-  .pin {
-    position: absolute;
-    font-size: 16px;
-    font-weight: bold;
-    background: rgba(255,255,255,0.9);
-    padding: 2px 6px;
-    border-radius: 6px;
-    cursor: grab;
-    user-select: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    animation: drop 0.5s ease forwards;
-  }
+    .entry:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
 
-  @keyframes drop {
-    0% { transform: translateY(-30px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-</style>
+    .entry img {
+      width: 300px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .entry img:hover {
+      transform: scale(1.2);
+    }
+
+    .entry h2 {
+      font-size: 1.5em;
+      margin: 15px 0 10px 0;
+    }
+
+    .entry p {
+      font-size: 1.4em;
+      line-height: 1.6;
+      color: #333;
+    }
+
+  </style>
